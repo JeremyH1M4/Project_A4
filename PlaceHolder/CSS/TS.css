@@ -1,0 +1,12 @@
+body {
+    background-color: black;
+}
+
+.text-show {
+    opacity: 1;
+height: 500px
+}
+
+.text-fade {
+    opacity: 0;
+}
