@@ -63,8 +63,4 @@ timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
  AT = Prompt("There is no turning back")
- if (AT === "Void") {
-    window.location.replace("/pg9-11/end/End-2.html")
- }
-    else {window/location.replace("/pg9-11/end/End-1.html");}
 });

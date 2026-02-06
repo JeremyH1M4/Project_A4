@@ -62,7 +62,3 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 const timerBar = document.getElementById('timerBar');
 const durationSeconds = 30 ;
 timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/Rooms.html"); 
-});
