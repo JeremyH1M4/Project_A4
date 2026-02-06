@@ -1,7 +1,7 @@
 'use strict';
 
 // Arrays
-const texts = ["There is no turning back now"];
+const texts = ["There is no turning back now", ">ERROR", "Work in Progress"];
 
 let textCounter = 0;
 let buttonCounter = 0;
