@@ -1,9 +1,7 @@
 'use strict';
 
 // Arrays
-const texts = ["Why is there no one around...?"];
-const buttonLabels = ["Turn Left", "Turn Right"];
-const buttonLinks = ["Left.html", "Right.html"]; // Links for button
+const texts = ["Why is there no one around...?", ">ERROR", "Work in Progress"];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -57,12 +55,3 @@ function startButtons() {
 
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
-
-//Timer Bar
-const timerBar = document.getElementById('timerBar');
-const durationSeconds = 100 ;
-timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg3-5/HTML/BR-1.html"); 
-});

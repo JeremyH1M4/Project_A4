@@ -55,7 +55,7 @@ function startButtons() {
 
 let PR = prompt("Where am I?"); {
     if (PR === "I AM HOME") {
-        window.location.replace("/pg6-8/HTML/Sleep.html")
+        window.location.replace("/pg3-5/HTML/Stay.html")
     }
     else {
         window.location.replace("/pg9-11/HTML/Rooms.html")

@@ -1,13 +1,10 @@
 'use strict';
 
 // Arrays
-const texts = ["Why is there no one around...?"];
+const texts = ["Why is there no one around...?", ">ERROR", "Work in Progress"];
 
 let textCounter = 0;
 let buttonCounter = 0;
-
-const textElement = document.getElementById("text-element");
-const container = document.getElementById("button-container");
 
 //Text
 textElement.textContent = texts[0];
@@ -57,10 +54,3 @@ function startButtons() {
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
-const timerBar = document.getElementById('timerBar');
-const durationSeconds = 200 ;
-timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/City.html"); 
-});
