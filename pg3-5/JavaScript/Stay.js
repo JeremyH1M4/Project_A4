@@ -3,7 +3,7 @@
 // Arrays
 const texts = [];
 const buttonLabels = ["Collect Fire Wood", "Go to sleep"];
-const buttonLinks = ["River.html", "NewPlace.html"]; // Links for button
+const buttonLinks = ["/pg6-8/HTML/River.html", "/pg6-8/HTML/Sleep.html"]; // Links for button
 
 let textCounter = 0;
 let buttonCounter = 0;

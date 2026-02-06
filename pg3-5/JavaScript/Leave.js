@@ -60,7 +60,7 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 10;
+const durationSeconds = 600;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {

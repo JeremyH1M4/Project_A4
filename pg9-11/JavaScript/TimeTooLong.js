@@ -1,7 +1,9 @@
 'use strict';
 
 // Arrays
-const texts = ["Why is there no one around...?"];
+const texts = ["There is no turning back now"];
+const buttonLabels = ["Keep going", "Keep going"];
+const buttonLinks = ["Keep going.html", "Keep going.html"]; // Links for button
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -58,9 +60,9 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 200 ;
+const durationSeconds = 6000;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/City.html"); 
+    window.location.replace("/pg3-5/HTML/BR-1.html"); 
 });

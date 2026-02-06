@@ -49,7 +49,7 @@ p {
 
 .text-show {
     opacity: 1;
-    color: white;
+    color: red;
   font-family: "Courier Prime", monospace;
   font-weight: 400;
   font-style: normal;
@@ -57,39 +57,4 @@ p {
 
 .text-fade {
     opacity: 0;
-}
-
-.timer-container {
-  width: 100%;
-  height: 10px;
-  background-color: black;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.timer-bar {
-  height: 100%;
-  background-color: white;
-  width: 100%;
-  animation: shrink 1200 linear forwards; 
-}
-
-@keyframes shrink {
-  from { width: 100%; }
-  to { width: 0%; }
-}
-
-.ButtonDisplay {
-    display: flex;
-    justify-content: center;
-  flex-direction: column;
-    opacity: 1;
-height: 100px;
-    margin-top: 20px;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }

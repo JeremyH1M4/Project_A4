@@ -1,7 +1,8 @@
 'use strict';
 
 // Arrays
-const texts = ["Why is there no one around...?"];
+const texts = [".", "..", "...", ".. / .- -- / .... --- -- ."];
+
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -53,14 +54,15 @@ function startButtons() {
     }, 1500); 
 }
 
+console.log(".. / .- -- / .... --- -- .");
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 200 ;
+const durationSeconds = 30 ;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/City.html"); 
+    window.location.replace("/pg9-11/HTML/Rooms.html"); 
 });

@@ -2,8 +2,6 @@
 
 // Arrays
 const texts = ["There is no turning back now"];
-const buttonLabels = ["Keep going", "Keep going"];
-const buttonLinks = ["Keep going.html", "Keep going.html"]; // Links for button
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -60,9 +58,13 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 6000;
+const durationSeconds = 1200;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg3-5/HTML/BR-1.html"); 
+ AT = Prompt("There is no turning back")
+ if (AT === "Void") {
+    window.location.replace("/pg9-11/end/End-2.html")
+ }
+    else {window/location.replace("/pg9-11/end/End-1.html");}
 });
