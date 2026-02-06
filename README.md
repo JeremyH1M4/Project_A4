@@ -7,3 +7,7 @@ This might also include an animation based on that choice you made
 
  This entire repository is gonna be an improvement on my previous project
 
+ The texts and buttons delay includes arrays with the use of setTimeout
+
+ Another thing I wanna add is a timer, when the timer runs out, it forces you into another webpage
+
