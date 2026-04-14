@@ -47,6 +47,13 @@ p {
     transition: none;
 }
 
+/* center the text between the image and buttons */
+#text-element {
+  text-align: center;
+  margin: 16px 0; /* space above/below */
+  max-width: 100%;
+}
+
 .text-show {
     opacity: 1;
     color: white;
@@ -71,7 +78,7 @@ p {
   height: 100%;
   background-color: white;
   width: 100%;
-  animation: shrink 6000s linear forwards; 
+  animation: shrink 35s linear forwards; 
 }
 
 @keyframes shrink {
@@ -80,12 +87,40 @@ p {
 }
 
 .ButtonDisplay {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-    opacity: 1;
-height: 100px;
-    margin-top: 20px;
+  opacity: 1;
+  height: 100px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* button container: center buttons and add spacing */
+/* button container centers buttons horizontally by default */
+#button-container {
+  display: flex;
+  flex-direction: row; /* lay out buttons in a row */
+  justify-content: center; /* center horizontally */
+  align-items: center;
+  gap: 12px; /* spacing between buttons */
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto; /* fallback centering */
+}
+
+#button-container button {
+  padding: 8px 14px;
+  min-width: 160px;
+  border: none;
+  background: white;
+  color: black;
+  font-family: "Courier Prime", monospace;
+  cursor: pointer;
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
 }
 
 .container {
@@ -93,3 +128,71 @@ height: 100px;
     flex-direction: column;
     align-items: center;
 }
+
+#bar {
+    transition: width 0.1s ease-in-out;
+    width: 0%;
+    height: 100%;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+#progress-container {
+    margin: 20px auto;
+    width: 100%;
+    background: black;
+    height: 20px;
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 600px;
+    border: 2px solid white;
+}
+
+/* message that appears during progress phase */
+.progress-text {
+  text-align: center;
+  color: white;
+  font-family: "Courier Prime", monospace;
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+#sanity-bar {
+    transition: width 0.1s ease-in-out;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: black;
+    background-color: white;
+}
+#sanity-container {
+    margin: 20px auto;
+    width: 100%;
+    background: black;
+    height: 20px;
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 600px;
+    border: 2px solid white;
+}
+
+/* helper utility to forcefully hide elements */
+.hidden {
+    display: none !important;
+}
+
+img {
+    display: block;
+    margin: 10px auto;
+    max-width: 600px;
+}
+
+.insane-caption {
+  text-align: center;
+  color: #fff;
+  font-family: "Courier Prime", monospace;
+  margin-top: 6px;
+  font-size: 13px;
+}
+
+

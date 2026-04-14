@@ -1,6 +1,7 @@
 'use strict';
 
 // Arrays
+const texts = [".", "..", "...", ".. / .- -- / .... --- -- ."];
 
 
 let textCounter = 0;
@@ -11,6 +12,7 @@ const container = document.getElementById("button-container");
 
 //Text
 textElement.textContent = texts[0];
+
 
 function changeTextWithAnimation() {
     
@@ -52,22 +54,11 @@ function startButtons() {
     }, 1500); 
 }
 
-let PR = prompt("Where am I?"); {
-    if (PR === "HOME") {
-        window.location.replace("/pg3-5/HTML/Stay.html")
-    }
-    else {
-        window.location.replace("/pg9-11/HTML/Rooms.html")
-    }
-}
+console.log(".. / .- -- / .... --- -- .");
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 30; ;
+const durationSeconds = 30 ;
 timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/Rooms.html"); 
-});

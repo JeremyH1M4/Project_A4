@@ -1,7 +1,9 @@
 'use strict';
 
 // Arrays
-const texts = ["Why is there no one around...?", ">ERROR", "Work in Progress"];
+const texts = ["Why is there no one around...?"];
+const buttonLabels = ["You have no choice but to keep going deeper into the city"];
+const buttonLinks = ["/pg9-15/HTML/ConcreteJungle.html"];
 
 let textCounter = 0;
 let buttonCounter = 0;
