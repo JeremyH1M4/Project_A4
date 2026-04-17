@@ -302,7 +302,7 @@ const tickInterval = setInterval(() => {
         }
     } else if (phase === 'progress') {
         // progress decays; sanity stays at 0 while in this phase
-        const progressDecay = PROGRESS_DECAY_BASE + count * 0.5; // scale with count
+        const progressDecay = PROGRESS_DECAY_BASE + count * 0.25; // scale with count
         progress = clamp(progress - progressDecay, 0, 100);
         updateUI();
 

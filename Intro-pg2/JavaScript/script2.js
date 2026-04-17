@@ -1,9 +1,12 @@
 'use strict';
 
+const Name_Retrieve = localStorage.getItem("T1");
+const Name = JSON.parse(Name_Retrieve);
+
 // Arrays
-const texts = [">The sun is setting...", "Its not safe when its dark out.", "Where do you go?"];
-const buttonLabels = ["Leave", "Stay Put"];
-const buttonLinks = ["/pg3-5/HTML/Leave.html", "/pg3-5/HTML/Stay.html"]; // Links for button
+const texts = ["The sun is setting.", "Maybe I should go"];
+const buttonLabels = ["Pack up and head out", "Stay"];
+const buttonLinks = ["/pg3-5/HTML/Leave.html","/pg3-5/HTML/Stay.html"];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -64,5 +67,17 @@ const durationSeconds = 300;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg3-5/HTML/Stay.html"); 
+    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
+    try {
+        clearInterval(progressTextInterval);
+        hideProgressText();
+        const AT = window.prompt('There is no turning back');
+        if (AT === "HOME") {
+            window.location.href = "/pg9-15/HTML/Home.html";
+        }
+
+
+    } catch (e) {
+        console.warn('prompt failed', e);
+    }
 });

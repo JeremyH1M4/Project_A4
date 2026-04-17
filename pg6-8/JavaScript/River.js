@@ -84,7 +84,7 @@ timerBar.addEventListener('animationend', () => {
 
 
 let progress = 40;
-let sanity = 100;
+let sanity = 10;
 let phase = 'sanity'; // start with sanity decaying
 let count = 0; // tracks how many times the player has successfully transitioned back to sanity
 let gameOver = false; // when true, stop accepting input for progression
