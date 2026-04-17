@@ -11,3 +11,6 @@ This might also include an animation based on that choice you made
 
  Another thing I wanna add is a timer, when the timer runs out, it forces you into another webpage
 
+ 17/4/26
+ - Local storage used in 'script2.js' and 'TimeTooLong.js'
+ - 

@@ -5,8 +5,6 @@ const Name = JSON.parse(Name_Retrieve);
 
 // Arrays
 const texts = ["There is no turning back now," + " " + Name];
-const buttonLabels = ["A random door strays your path", "Ignore"];
-const buttonLinks = ["/pg9-15/HTML/Door.html","/pg9-15/HTML/Cosmo.html"];
 
 let textCounter = 0;
 let buttonCounter = 0;
