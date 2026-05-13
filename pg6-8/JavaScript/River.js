@@ -227,7 +227,7 @@ function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
 // timing constants and bases (per-100ms tick rates)
 const TICK_MS = 2000;
-const SANITY_DECAY_BASE = 2;   // base sanity decay per tick
+const SANITY_DECAY_BASE = 50;   // base sanity decay per tick
 const PROGRESS_DECAY_BASE = 5; // base progress decay per tick
 const SPACE_INCREASE_BASE = 2; // base progress increase per space press
 
