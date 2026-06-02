@@ -66,26 +66,6 @@ p {
     opacity: 0;
 }
 
-.timer-container {
-  width: 100%;
-  height: 10px;
-  background-color: black;
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.timer-bar {
-  height: 100%;
-  background-color: white;
-  width: 100%;
-  animation: shrink 60s linear forwards; 
-}
-
-@keyframes shrink {
-  from { width: 100%; }
-  to { width: 0%; }
-}
-
 .ButtonDisplay {
   display: flex;
   justify-content: center;
@@ -122,6 +102,69 @@ p {
   display: inline-block;
   text-align: center;
 }
+
+/* code entry UI */
+.code-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+/* Ensure code container can receive clicks and sits above other UI when revealed */
+.code-container {
+  position: relative;
+  pointer-events: auto;
+}
+
+.code-container input[type="text"] {
+  position: relative;
+  z-index: 2;
+}
+/* color variables for code input - change these to customize */
+:root {
+  --code-placeholder-color: rgba(255,255,255,0.6);
+  --code-placeholder-color-focus: rgba(255,255,255,0.35);
+  --code-text-color: #ffffff;
+  --code-text-color-focus: #b3f0ff; /* light cyan when typing/focused */
+}
+
+.code-container input[type="text"] {
+  padding: 8px 10px;
+  min-width: 180px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-family: "Courier Prime", monospace;
+  color: var(--code-text-color);
+  background: transparent;
+  caret-color: var(--code-text-color-focus);
+}
+
+/* Placeholder styling */
+.code-container input[type="text"]::placeholder { color: var(--code-placeholder-color); }
+.code-container input[type="text"]::-webkit-input-placeholder { color: var(--code-placeholder-color); }
+.code-container input[type="text"]:-ms-input-placeholder { color: var(--code-placeholder-color); }
+.code-container input[type="text"]::-ms-input-placeholder { color: var(--code-placeholder-color); }
+.code-container input[type="text"]::-moz-placeholder { color: var(--code-placeholder-color); opacity: 1; }
+
+/* When focused, change typed text color and placeholder slightly */
+.code-container input[type="text"]:focus {
+  color: var(--code-text-color-focus);
+}
+.code-container input[type="text"]:focus::placeholder { color: var(--code-placeholder-color-focus); }
+
+.code-container button {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  background: white;
+  color: black;
+  cursor: pointer;
+  font-family: "Courier Prime", monospace;
+}
+
+.code-feedback { color: #f2f2f2; font-size: 13px; margin-top: 6px; text-align: center; }
 
 .container {
     display: flex;

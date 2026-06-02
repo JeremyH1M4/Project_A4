@@ -59,26 +59,26 @@ function startButtons() {
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
-//Timer Bar
+// guard: find timerBar and only attach listener if present
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 45;
-timerBar.style.animationDuration = `${durationSeconds}s`;
+let progressTextInterval = null; // ensure this exists before any clearInterval calls
 
-timerBar.addEventListener('animationend', () => {
-    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
-    try {
-        clearInterval(progressTextInterval);
-        hideProgressText();
-        const AT = window.prompt('There is no turning back');
-        if (AT === "HOME") {
-            window.location.href = "/pg9-15/HTML/Home.html";
+if (timerBar) {
+    timerBar.addEventListener('animationend', () => {
+        try {
+            if (typeof progressTextInterval !== 'undefined' && progressTextInterval) clearInterval(progressTextInterval);
+            hideProgressText();
+            const AT = window.prompt('There is no turning back');
+            if (AT === "HOME") {
+                window.location.href = "/pg9-15/HTML/Home.html";
+            }
+        } catch (e) {
+            console.warn('prompt failed', e);
         }
-
-
-    } catch (e) {
-        console.warn('prompt failed', e);
-    }
-});
+    });
+} else {
+    console.debug('timerBar element not found; skipping animationend handler');
+}
 
 
 let progress = 40;
@@ -106,7 +106,70 @@ const CAPTION_MESSAGES = [
 const Text = document.getElementById('Text');
 const mainContent = document.querySelector('.id');
 const progressTextEl = document.getElementById('progress-text');
-let progressTextInterval = null;
+// code-entry UI
+const codeContainer = document.getElementById('code-container');
+const codeInput = document.getElementById('code-input');
+const codeSubmit = document.getElementById('code-submit');
+const codeFeedback = document.getElementById('code-feedback');
+
+// map of valid codes to destinations
+const CODE_MAP = {
+    'HOME': '/pg9-15/HTML/Home.html'
+};
+
+function showCodeEntry() {
+    if (codeContainer) {
+        console.debug('showCodeEntry: revealing code container');
+        codeContainer.classList.remove('hidden');
+        // force inline display to override other rules while debugging
+        codeContainer.style.display = 'flex';
+        // ensure it can receive pointer events and is above other layers
+        codeContainer.style.pointerEvents = 'auto';
+        codeContainer.style.zIndex = '2000';
+        // enable and focus the input so the user can type immediately
+        if (codeInput) {
+            codeInput.disabled = false;
+            codeInput.readOnly = false;
+            codeInput.tabIndex = 0;
+            codeInput.style.pointerEvents = 'auto';
+            codeInput.style.zIndex = '2001';
+            // focus after paint
+            setTimeout(() => { try { codeInput.focus(); codeInput.select(); } catch (e) {} }, 0);
+            // helper: focus input when container is clicked (if some overlay steals clicks)
+            codeContainer.addEventListener('click', function _focusOnClick() { try { codeInput.focus(); } catch(e) {}; codeContainer.removeEventListener('click', _focusOnClick); });
+        }
+    }
+}
+
+function hideCodeEntry() {
+    if (codeContainer) {
+        console.debug('hideCodeEntry: hiding code container');
+        codeContainer.classList.add('hidden');
+        // remove inline display so hidden class takes effect
+        codeContainer.style.display = '';
+        codeContainer.style.pointerEvents = '';
+        codeContainer.style.zIndex = '';
+    }
+    if (codeFeedback) codeFeedback.textContent = '';
+}
+
+function handleCodeSubmit() {
+    if (!codeInput) return;
+    const val = codeInput.value.trim().toUpperCase();
+    if (!val) {
+        if (codeFeedback) codeFeedback.textContent = 'Decide your fate.';
+        return;
+    }
+    const dest = CODE_MAP[val];
+    if (dest) {
+        window.location.href = dest;
+    } else {
+        if (codeFeedback) codeFeedback.textContent = 'The fate you favor is not within your reach.';
+    }
+}
+
+if (codeSubmit) codeSubmit.addEventListener('click', handleCodeSubmit);
+if (codeInput) codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleCodeSubmit(); });
 
 // helpers to show/hide containers consistently
 function showSanity() {
@@ -118,6 +181,8 @@ function showSanity() {
     // show buttons in sanity
     const btnContainer = document.getElementById('button-container');
     if (btnContainer) btnContainer.classList.remove('hidden');
+    // show code-entry UI in sanity
+    showCodeEntry();
     if (insaneCaptionEl) insaneCaptionEl.classList.add('hidden');
     // also show main content and timer, hide the progress view
     if (mainContent) mainContent.classList.remove('hidden');
@@ -141,6 +206,8 @@ function showProgress() {
     // hide buttons during progression
     const btnContainer = document.getElementById('button-container');
     if (btnContainer) btnContainer.classList.add('hidden');
+    // hide code-entry UI during progression
+    hideCodeEntry();
 
     // extra defensive steps: make sure elements are visible if class toggles failed
     if (progressContainer) {
@@ -199,12 +266,13 @@ function updateProgressText() {
     if (!progressTextEl) return;
 
     try {
-        // choose severity text based on `count`
-        let severity;
-        if (count <= 6) severity = 'I cant give up';
-        else if (count <= 1) severity = 'Its not my time';
-        else if (count <= 4) severity = 'Its hopeless';
-        else severity = '...';
+    // choose severity text based on `count` (smallest checks first)
+    let severity;
+    if (count <= 1) severity = 'I cant give up';
+    else if (count <= 2) severity = 'Its not my time';
+    else if (count <= 4) severity = 'Its hopeless';
+    else if (count <= 6) severity = 'It grows darker';
+    else severity = '...';
 
         // choose message fragment based on progress
         const pct = Math.floor(progress);
@@ -225,7 +293,7 @@ function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
 // timing constants and bases (per-100ms tick rates)
 const TICK_MS = 75;
-const SANITY_DECAY_BASE = 3;   // base sanity decay per tick
+const SANITY_DECAY_BASE = .25;   // base sanity decay per tick
 const PROGRESS_DECAY_BASE = 0.5; // base progress decay per tick
 const SPACE_INCREASE_BASE = 5; // base progress increase per space press
 

@@ -4,9 +4,7 @@ const Name_Retrieve = localStorage.getItem("T1");
 const Name = JSON.parse(Name_Retrieve);
 
 // Arrays
-const texts = ["There is no turning back now," + " " + Name];
-const buttonLabels = [];
-const buttonLinks = [];
+const texts = ["The river seems to stretch endlessly, but the terrain remains the same. Am I looping?"];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -61,30 +59,9 @@ function startButtons() {
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
-//Timer Bar
-const timerBar = document.getElementById('timerBar');
-const durationSeconds = 45;
-timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
-    try {
-        clearInterval(progressTextInterval);
-        hideProgressText();
-        const AT = window.prompt('There is no turning back');
-        if (AT === "HOME") {
-            window.location.href = "/pg9-15/HTML/Home.html";
-        }
-
-
-    } catch (e) {
-        console.warn('prompt failed', e);
-    }
-});
-
 
 let progress = 40;
-let sanity = 10;
+let sanity = 100;
 let phase = 'sanity'; // start with sanity decaying
 let count = 0; // tracks how many times the player has successfully transitioned back to sanity
 let gameOver = false; // when true, stop accepting input for progression
@@ -109,6 +86,55 @@ const Text = document.getElementById('Text');
 const mainContent = document.querySelector('.id');
 const progressTextEl = document.getElementById('progress-text');
 let progressTextInterval = null;
+// code-entry UI (same behavior as TimeTooLong)
+const codeContainer = document.getElementById('code-container');
+const codeInput = document.getElementById('code-input');
+const codeSubmit = document.getElementById('code-submit');
+const codeFeedback = document.getElementById('code-feedback');
+
+// map of valid codes to destinations (adjust per-page as needed)
+// keep raw mapping here, then normalize keys into CODE_MAP for case/whitespace-insensitive lookup
+const CODE_MAP_RAW = {
+    'sky': '/pg9-15/HTML/Home.html',
+    'the sky': '/pg9-15/HTML/Home.html'
+};
+const CODE_MAP = Object.fromEntries(
+    Object.entries(CODE_MAP_RAW).map(([k, v]) => [k.toLowerCase().replace(/\s+/g, ' '), v])
+);
+
+function showCodeEntry() {
+    if (codeContainer) {
+        codeContainer.classList.remove('hidden');
+        codeContainer.style.display = 'flex';
+    }
+}
+
+function hideCodeEntry() {
+    if (codeContainer) {
+        codeContainer.classList.add('hidden');
+        codeContainer.style.display = '';
+    }
+    if (codeFeedback) codeFeedback.textContent = '';
+}
+
+function handleCodeSubmit() {
+    if (!codeInput) return;
+    // normalize: trim, collapse multiple spaces, lower-case for robust matching
+    const val = codeInput.value.trim().replace(/\s+/g, ' ').toLowerCase();
+    if (!val) {
+        if (codeFeedback) codeFeedback.textContent = 'Please enter a code.';
+        return;
+    }
+    const dest = CODE_MAP[val];
+    if (dest) {
+        window.location.href = dest;
+    } else {
+        if (codeFeedback) codeFeedback.textContent = 'Invalid code.';
+    }
+}
+
+if (codeSubmit) codeSubmit.addEventListener('click', handleCodeSubmit);
+if (codeInput) codeInput.addEventListener('keydown', (e) => { if (e.key === 'Enter') handleCodeSubmit(); });
 
 // helpers to show/hide containers consistently
 function showSanity() {
@@ -120,6 +146,8 @@ function showSanity() {
     // show buttons in sanity
     const btnContainer = document.getElementById('button-container');
     if (btnContainer) btnContainer.classList.remove('hidden');
+    // show code-entry UI in sanity
+    showCodeEntry();
     if (insaneCaptionEl) insaneCaptionEl.classList.add('hidden');
     // also show main content and timer, hide the progress view
     if (mainContent) mainContent.classList.remove('hidden');
@@ -143,6 +171,8 @@ function showProgress() {
     // hide buttons during progression
     const btnContainer = document.getElementById('button-container');
     if (btnContainer) btnContainer.classList.add('hidden');
+    // hide code-entry UI during progression
+    hideCodeEntry();
 
     // extra defensive steps: make sure elements are visible if class toggles failed
     if (progressContainer) {
@@ -227,7 +257,7 @@ function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
 
 // timing constants and bases (per-100ms tick rates)
 const TICK_MS = 2000;
-const SANITY_DECAY_BASE = 50;   // base sanity decay per tick
+const SANITY_DECAY_BASE = 2.5;   // base sanity decay per tick
 const PROGRESS_DECAY_BASE = 5; // base progress decay per tick
 const SPACE_INCREASE_BASE = 2; // base progress increase per space press
 
@@ -302,7 +332,7 @@ const tickInterval = setInterval(() => {
         }
     } else if (phase === 'progress') {
         // progress decays; sanity stays at 0 while in this phase
-        const progressDecay = PROGRESS_DECAY_BASE + count * 2; // scale with count
+        const progressDecay = PROGRESS_DECAY_BASE + count * 1.15; // scale with count
         progress = clamp(progress - progressDecay, 0, 100);
         updateUI();
 

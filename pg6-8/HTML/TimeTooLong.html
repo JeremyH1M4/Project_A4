@@ -12,9 +12,6 @@
 </head>
 <body>
     <div class ="Text">
-        <div class="timer-container">
-  <div class="timer-bar" id="timerBar"></div>
-</div>
     <div id="sanity-container">
         <div id="sanity-bar">100 Sanity</div>
     </div>
@@ -32,6 +29,11 @@
     <p id="text-element" class="text-show">The sun is setting...</p>
     <div class="ButtonDisplay">
         <div id="button-container"></div>
+        <div id="code-container" class="code-container hidden">
+            <input id="code-input" type="text" placeholder="Enter code" autocomplete="off">
+            <button id="code-submit">The only place to turn back to</button>
+            <div id="code-feedback" class="code-feedback" aria-live="polite"></div>
+        </div>
     </div>
 </div>
 </section>
