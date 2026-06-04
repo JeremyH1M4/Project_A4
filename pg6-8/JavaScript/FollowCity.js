@@ -52,6 +52,9 @@ function startButtons() {
     }, 1500); 
 }
 
+timerBar.addEventListener('animationend', () => {
+    window.location.replace("/pg6-8/HTML/TimeTooLong.html"); 
+});
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 

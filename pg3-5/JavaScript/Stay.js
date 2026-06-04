@@ -60,9 +60,14 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 300;
+const durationSeconds = 90;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg3-5/HTML/BR-1.html"); 
+    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
+    try {
+            window.location.href = "/pg6-8/HTML/Sleep.html";
+    } catch (e) {
+        console.warn('prompt failed', e);
+    }
 });

@@ -63,23 +63,6 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 const timerBar = document.getElementById('timerBar');
 let progressTextInterval = null; // ensure this exists before any clearInterval calls
 
-if (timerBar) {
-    timerBar.addEventListener('animationend', () => {
-        try {
-            if (typeof progressTextInterval !== 'undefined' && progressTextInterval) clearInterval(progressTextInterval);
-            hideProgressText();
-            const AT = window.prompt('There is no turning back');
-            if (AT === "HOME") {
-                window.location.href = "/pg9-15/HTML/Home.html";
-            }
-        } catch (e) {
-            console.warn('prompt failed', e);
-        }
-    });
-} else {
-    console.debug('timerBar element not found; skipping animationend handler');
-}
-
 
 let progress = 40;
 let sanity = 100;
@@ -112,10 +95,13 @@ const codeInput = document.getElementById('code-input');
 const codeSubmit = document.getElementById('code-submit');
 const codeFeedback = document.getElementById('code-feedback');
 
-// map of valid codes to destinations
-const CODE_MAP = {
-    'HOME': '/pg9-15/HTML/Home.html'
+// map of valid codes to destinations (raw), then normalize keys for robust lookup
+const CODE_MAP_RAW = {
+    'home': '/pg9-15/HTML/Home.html'
 };
+const CODE_MAP = Object.fromEntries(
+    Object.entries(CODE_MAP_RAW).map(([k, v]) => [k.toLowerCase().replace(/\s+/g, ' '), v])
+);
 
 function showCodeEntry() {
     if (codeContainer) {
@@ -155,7 +141,8 @@ function hideCodeEntry() {
 
 function handleCodeSubmit() {
     if (!codeInput) return;
-    const val = codeInput.value.trim().toUpperCase();
+    // normalize input: trim, collapse whitespace, lowercase
+    const val = codeInput.value.trim().replace(/\s+/g, ' ').toLowerCase();
     if (!val) {
         if (codeFeedback) codeFeedback.textContent = 'Decide your fate.';
         return;

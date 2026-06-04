@@ -122,14 +122,14 @@ function handleCodeSubmit() {
     // normalize: trim, collapse multiple spaces, lower-case for robust matching
     const val = codeInput.value.trim().replace(/\s+/g, ' ').toLowerCase();
     if (!val) {
-        if (codeFeedback) codeFeedback.textContent = 'Please enter a code.';
+        if (codeFeedback) codeFeedback.textContent = 'Choose your fate';
         return;
     }
     const dest = CODE_MAP[val];
     if (dest) {
         window.location.href = dest;
     } else {
-        if (codeFeedback) codeFeedback.textContent = 'Invalid code.';
+        if (codeFeedback) codeFeedback.textContent = 'The fate you have chosen is not within your grasp';
     }
 }
 
@@ -246,7 +246,7 @@ function updateProgressText() {
         else if (pct < 75) fragment = '';
         else fragment = '';
 
-        progressTextEl.textContent = `Resistance| ${severity} — ${fragment}`;
+        progressTextEl.textContent = `Resistance ${severity} — ${fragment}`;
     } catch (err) {
         console.warn('updateProgressText failed:', err);
     }
@@ -319,7 +319,7 @@ window.addEventListener('keyup', (event) => {
 const tickInterval = setInterval(() => {
     if (phase === 'sanity') {
         // sanity decays, progress decay is halted
-        const sanDecay = SANITY_DECAY_BASE + count * 0.5; // scale with count
+        const sanDecay = SANITY_DECAY_BASE + count * 0.175; // scale with count
         sanity = clamp(sanity - sanDecay, 0, 100);
         updateUI();
 
@@ -332,7 +332,7 @@ const tickInterval = setInterval(() => {
         }
     } else if (phase === 'progress') {
         // progress decays; sanity stays at 0 while in this phase
-        const progressDecay = PROGRESS_DECAY_BASE + count * 1.15; // scale with count
+        const progressDecay = PROGRESS_DECAY_BASE + count * 1.125; // scale with count
         progress = clamp(progress - progressDecay, 0, 100);
         updateUI();
 

@@ -63,20 +63,13 @@ const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 300;
+const durationSeconds = 180;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
     // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
     try {
-        clearInterval(progressTextInterval);
-        hideProgressText();
-        const AT = window.prompt('There is no turning back');
-        if (AT === "HOME") {
-            window.location.href = "/pg9-15/HTML/Home.html";
-        }
-
-
+            window.location.href = "/pg3-5/HTML/Stay.html";
     } catch (e) {
         console.warn('prompt failed', e);
     }
