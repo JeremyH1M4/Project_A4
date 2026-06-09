@@ -1,7 +1,8 @@
 'use strict';
 
 // Arrays
-
+const texts = ["'It's hard to understand. What happened? All I wanted was to go back home. But I don't think I'm nowhere near it.'","'Maybe I'm dreaming?'","The cold wind blowing certainly proves it wrong, does it?" ];
+const buttonLabels = [""];// Links for button
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -11,6 +12,7 @@ const container = document.getElementById("button-container");
 
 //Text
 textElement.textContent = texts[0];
+
 
 function changeTextWithAnimation() {
     
@@ -28,7 +30,7 @@ function changeTextWithAnimation() {
         textElement.textContent = texts[textCounter];
         textElement.classList.remove("text-fade");
         textElement.classList.add("text-show");
-    }, 2000);
+    }, 4000);
 }
 
 //Button after text
@@ -52,22 +54,5 @@ function startButtons() {
     }, 1500); 
 }
 
-let PR = prompt("Where am I?"); {
-    if (PR === "HOME") {
-        window.location.replace("/pg3-5/HTML/Stay.html")
-    }
-    else {
-        window.location.replace("/pg9-11/HTML/Rooms.html")
-    }
-}
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
-
-//Timer Bar
-const timerBar = document.getElementById('timerBar');
-const durationSeconds = 30; ;
-timerBar.style.animationDuration = `${durationSeconds}s`;
-
-timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/Rooms.html"); 
-});

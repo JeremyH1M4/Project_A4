@@ -54,11 +54,18 @@ function startButtons() {
     }, 1500); 
 }
 
-console.log(".. / .- -- / .... --- -- .");
-
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
 const durationSeconds = 30 ;
 timerBar.style.animationDuration = `${durationSeconds}s`;
+
+timerBar.addEventListener('animationend', () => {
+    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
+    try {
+            window.location.href = "/pg6-8/HTML/";
+    } catch (e) {
+        console.warn('prompt failed', e);
+    }
+});

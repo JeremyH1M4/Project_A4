@@ -1,7 +1,7 @@
 'use strict';
 
 // Arrays
-
+const texts = ['Am I dreaming?', 'Why is there no one around?', 'Where am I?', ".", "..", "..."];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -52,22 +52,18 @@ function startButtons() {
     }, 1500); 
 }
 
-let PR = prompt("Where am I?"); {
-    if (PR === "HOME") {
-        window.location.replace("/pg3-5/HTML/Stay.html")
-    }
-    else {
-        window.location.replace("/pg9-11/HTML/Rooms.html")
-    }
-}
-
 const textInterval = setInterval(changeTextWithAnimation, 4000);
 
 //Timer Bar
 const timerBar = document.getElementById('timerBar');
-const durationSeconds = 30; ;
+const durationSeconds = 20;
 timerBar.style.animationDuration = `${durationSeconds}s`;
 
 timerBar.addEventListener('animationend', () => {
-    window.location.replace("/pg9-11/HTML/Rooms.html"); 
+    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
+    try {
+            window.location.href = "/pg6-8/HTML/Awake.html";
+    } catch (e) {
+        console.warn('prompt failed', e);
+    }
 });

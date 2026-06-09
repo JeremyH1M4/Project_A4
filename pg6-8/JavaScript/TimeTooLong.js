@@ -97,7 +97,7 @@ const codeFeedback = document.getElementById('code-feedback');
 
 // map of valid codes to destinations (raw), then normalize keys for robust lookup
 const CODE_MAP_RAW = {
-    'home': '/pg9-15/HTML/Home.html'
+    'home': '/pg9-15/HTML/ConcreteJungle.html'
 };
 const CODE_MAP = Object.fromEntries(
     Object.entries(CODE_MAP_RAW).map(([k, v]) => [k.toLowerCase().replace(/\s+/g, ' '), v])
@@ -379,8 +379,8 @@ const tickInterval = setInterval(() => {
             if (typeof timerBar !== 'undefined' && timerBar) {
                 timerBar.style.animationPlayState = 'paused';
             }
-
-            alert('You lost!');
+            alert('Come back when you truly found what you are looking for.');
+            try {window.location.href = "/pg6-8/HTML/Sleep.html";} catch (e) {}
             return;
         }
 

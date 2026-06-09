@@ -4,7 +4,7 @@ const Name_Retrieve = localStorage.getItem("T1");
 const Name = JSON.parse(Name_Retrieve);
 
 // Arrays
-const texts = ["The river seems to stretch endlessly, but the terrain remains the same. Am I looping?"];
+const texts = ["A city with empty streets...", "The occupancy of the buildings are non-existent.", "There is nothing but you and a concrete jungle."];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -95,8 +95,8 @@ const codeFeedback = document.getElementById('code-feedback');
 // map of valid codes to destinations (adjust per-page as needed)
 // keep raw mapping here, then normalize keys into CODE_MAP for case/whitespace-insensitive lookup
 const CODE_MAP_RAW = {
-    'sky': '/pg9-15/HTML/ConcreteJungle.html',
-    'the sky': '/pg9-15/HTML/ConcreteJungle.html'
+    'sky': '/pg9-15/HTML/Home.html',
+    'the sky': '/pg9-15/HTML/Home.html'
 };
 const CODE_MAP = Object.fromEntries(
     Object.entries(CODE_MAP_RAW).map(([k, v]) => [k.toLowerCase().replace(/\s+/g, ' '), v])

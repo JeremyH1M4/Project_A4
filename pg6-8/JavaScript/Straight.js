@@ -1,8 +1,10 @@
 'use strict';
 
 // Arrays
-const texts = ["Its getting darker", ">ERROR", "Work in Progress"];
-const buttonLabels = ["Go to the City", "Keep Going Straight"];// Links for button
+const texts = ["It's an abnormal feeling, I don't rememver this road being here. No one is here either. . ."];
+const buttonLabels = ["Last Chance to turn back now", "Keep Going Straight"];
+// Links for button
+const buttonLinks = ["/pg6-8/HTML/FollowCity.html", "/pg9-15/HTML/ConcreteJungle.html"];
 
 let textCounter = 0;
 let buttonCounter = 0;
@@ -56,3 +58,16 @@ function startButtons() {
 
 
 const textInterval = setInterval(changeTextWithAnimation, 4000);
+
+const timerBar = document.getElementById('timerBar');
+const durationSeconds = 86;
+timerBar.style.animationDuration = `${durationSeconds}s`;
+
+timerBar.addEventListener('animationend', () => {
+    // use the standard prompt (lowercase) and declare AT so errors here don't stop the script
+    try {
+            window.location.href = "/pg6-8/HTML/TimeTooLong.html";
+    } catch (e) {
+        console.warn('prompt failed', e);
+    }
+});
